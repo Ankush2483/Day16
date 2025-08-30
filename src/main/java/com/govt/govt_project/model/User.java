@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@Data
 @Table(name = "users")
 public class User {
 
@@ -16,8 +17,9 @@ public class User {
     @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 
-    @Column(name = "username", nullable = false, unique = true)
+    @Column(name = "username", nullable = false)
     private String username;
+
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -31,21 +33,22 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address_line_1")
-    private String addressLine1;
-
-    @Column(name = "address_line_2")
-    private String addressLine2;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "state")
-    private String state;
-
     @Column(name = "country")
     private String country;
 
-    @Column(name = "postal_code")
-    private Long postalCode;
+//    @Column(name = "address_line_1")
+//    private String addressLine1;
+//
+//   @Column(name = "address_line_2")
+//    private String addressLine2;
+//
+//
+//    @Column(name = "city")
+//    private String city;
+//
+//    @Column(name = "state")
+//    private String state;
+
+//    @Column(name = "postal_code")
+//    private Long postalCode;
 }
