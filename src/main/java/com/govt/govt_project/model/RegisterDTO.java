@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterDTO {
-    private String username;
+//    private String username;
     private String firstName;
     private String lastName;
     private String email;

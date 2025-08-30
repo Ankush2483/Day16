@@ -20,10 +20,6 @@ public class UserService {
 
     @Transactional
     public String data(RegisterDTO dto) {
-        if (userRepository.existsByUsername(dto.getUsername())) {
-            return "Username already exists!";
-        }
-
         if (userRepository.existsByEmail(dto.getEmail())) {
             return "Email already exists!";
         }
@@ -33,7 +29,6 @@ public class UserService {
         User newUser = new User();
         newUser.setFirstName(dto.getFirstName());
         newUser.setLastName(dto.getLastName());
-        newUser.setUsername(dto.getUsername());
         newUser.setEmail(dto.getEmail());
         newUser.setCountry(dto.getCountry());
         newUser.setPassword(dto.getPassword());
