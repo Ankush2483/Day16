@@ -37,4 +37,9 @@ public class AuthController {
         return "Login successful!";
     }
 
+    @PutMapping("id")
+    public User updateUser(@PathVariable Long id , @RequestBody RegisterDTO dto){
+       return userService.updateUser(id,dto);
+    }
+
 }

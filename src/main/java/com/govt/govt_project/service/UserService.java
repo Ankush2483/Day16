@@ -51,4 +51,22 @@ public class UserService {
     }
 
 
+    public  User updateUser(Long id, RegisterDTO user) {
+        User existingUser = userRepository.findById(id).orElse(null);
+        assert existingUser != null;
+        existingUser.setFirstName(user.getFirstName());
+        existingUser.setLastName(user.getLastName());
+        existingUser.setEmail(user.getEmail());
+        existingUser.setCountry(user.getCountry());
+        existingUser.setPassword(user.getPassword());
+        return userRepository.save(existingUser);
+    }
+
+
+
+
+
+
+
+
 }
