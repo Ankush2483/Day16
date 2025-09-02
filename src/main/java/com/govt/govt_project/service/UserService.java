@@ -1,8 +1,11 @@
 package com.govt.govt_project.service;
 import com.govt.govt_project.Repository.UserRepository;
 import com.govt.govt_project.model.RegisterDTO;
+import com.govt.govt_project.model.UpdateUserDTO;
 import com.govt.govt_project.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,15 +54,20 @@ public class UserService {
     }
 
 
-    public  User updateUser(Long id, RegisterDTO user) {
-        User existingUser = userRepository.findById(id).orElse(null);
-        assert existingUser != null;
-        existingUser.setFirstName(user.getFirstName());
-        existingUser.setLastName(user.getLastName());
-        existingUser.setEmail(user.getEmail());
-        existingUser.setCountry(user.getCountry());
-        existingUser.setPassword(user.getPassword());
-        return userRepository.save(existingUser);
+    public String updateUser(UpdateUserDTO user) {
+        Optional<User> existingUser = userRepository.findById(user.getId());
+        if (existingUser.isPresent()){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User userProfile = existingUser.get();
+            userProfile.setFirstName(user.getFirstName());
+            userProfile.setLastName(user.getLastName());
+            userProfile.setEmail(user.getEmail());
+            userProfile.setCountry(user.getCountry());
+            userProfile.setPassword(user.getPassword());
+            userRepository.save(userProfile);
+            return "User updated Successfully";
+        }
+        return "User not found";
     }
 
 
